@@ -1,3 +1,6 @@
+See [this blog](http://srchea.com/experimenting-with-web-audio-api-three-js-webgl) for a very helpful tutorial.
+
+
 First set up a context within upon all the functions
 used to parse the audio will be called:
 
@@ -18,13 +21,13 @@ When the request returns, onload is called, which in turn calls setup.
 			request.response,
 			(buffer) ->
 
-The AudioBufferSourceNode contains the buffer that is loaded asynchronously with decodeAudioData.
+The AudioBufferSourceNode contains the input audio data and outputs to the analyser and output.
 
 				source = audio.createBufferSource();
 				source.buffer = buffer;
 				source.connect(destination);
 
-The ScriptProcessorNode takes the audio data as its input and outputs to the destination node which plays the sound.
+The ScriptProcessorNode takes data from the analyser as its input and outputs to the destination node which plays the sound.
 
 				sourceJs = audio.createScriptProcessor(2048,1,1)
 				sourceJs.buffer = buffer
@@ -39,10 +42,11 @@ The AnalyserNode takes the current frequency data from the AudioBufferSourceNode
 				source.connect(analyser);
 				analyser.connect(sourceJs);
 
-Create the oscilloscope and connect the AnalyserNode to it
+Create the oscilloscope and connect the AudioBufferSourceNode to it
 
 				myOscilloscope = new WavyJones(audio, 'oscilloscope');
-				analyser.connect(myOscilloscope);
+				source.connect(myOscilloscope);
+				source.connect(audio.destination);
 				sourceJs.onaudioprocess = (e) ->
 					array = new Uint8Array(analyser.frequencyBinCount);
 					analyser.getByteFrequencyData(array);
