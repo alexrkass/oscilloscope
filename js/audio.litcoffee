@@ -1,7 +1,7 @@
 See [this blog](http://srchea.com/experimenting-with-web-audio-api-three-js-webgl) for a very helpful tutorial.
 
 
-First set up a context within upon all the functions
+First set up a context upon which all the functions
 used to parse the audio will be called:
 
 
