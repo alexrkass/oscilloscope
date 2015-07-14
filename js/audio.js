@@ -27,8 +27,7 @@
       source.connect(analyser);
       analyser.connect(sourceJs);
       myOscilloscope = new WavyJones(audio, 'oscilloscope');
-      source.connect(myOscilloscope);
-      source.connect(audio.destination);
+      analyser.connect(myOscilloscope);
       sourceJs.onaudioprocess = function(e) {
         var array;
         array = new Uint8Array(analyser.frequencyBinCount);

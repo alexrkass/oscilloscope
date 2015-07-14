@@ -38,11 +38,10 @@ The AnalyserNode takes the current frequency data from the AudioBufferSourceNode
 				source.connect(analyser);
 				analyser.connect(sourceJs);
 
-Create the oscilloscope and connect the AudioBufferSourceNode to it
+Create the oscilloscope and connect the AnalyserNode to it
 
 				myOscilloscope = new WavyJones(audio, 'oscilloscope');
-				source.connect(myOscilloscope);
-				source.connect(audio.destination);
+				analyser.connect(myOscilloscope);
 				sourceJs.onaudioprocess = (e) ->
 					array = new Uint8Array(analyser.frequencyBinCount);
 					analyser.getByteFrequencyData(array);
