@@ -22,6 +22,7 @@ The AudioBufferSourceNode contains the buffer that is loaded asynchronously with
 
 				source = audio.createBufferSource();
 				source.buffer = buffer;
+				source.connect(destination);
 
 The ScriptProcessorNode takes the audio data as its input and outputs to the destination node which plays the sound.
 

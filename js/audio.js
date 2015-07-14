@@ -19,6 +19,7 @@
       var analyser, myOscilloscope, source, sourceJs;
       source = audio.createBufferSource();
       source.buffer = buffer;
+      source.connect(destination);
       sourceJs = audio.createScriptProcessor(2048, 1, 1);
       sourceJs.buffer = buffer;
       analyser = audio.createAnalyser();
