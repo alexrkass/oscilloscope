@@ -25,7 +25,7 @@ The AudioBufferSourceNode contains the input audio data and outputs to the analy
 
 				source = audio.createBufferSource();
 				source.buffer = buffer;
-				source.connect(destination);
+				source.connect(audio.destination);
 
 The ScriptProcessorNode takes data from the analyser as its input and outputs to the destination node which plays the sound.
 
@@ -45,8 +45,7 @@ The AnalyserNode takes the current frequency data from the AudioBufferSourceNode
 Create the oscilloscope and connect the AudioBufferSourceNode to it
 
 				myOscilloscope = new WavyJones(audio, 'oscilloscope');
-				source.connect(myOscilloscope);
-				source.connect(audio.destination);
+				analyser.connect(myOscilloscope);
 				sourceJs.onaudioprocess = (e) ->
 					array = new Uint8Array(analyser.frequencyBinCount);
 					analyser.getByteFrequencyData(array);
