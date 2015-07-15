@@ -9,7 +9,7 @@ used to parse the audio will be called:
 
 Then open an HTTP request to asynchronously get your audio file:
 
-	url = 'data/11 Where I\'m Trying To Go (Marvel Years Remix).mp3';
+	url = 'data/music.mp3';
 	request = new XMLHttpRequest();
 	request.open('GET', url, true);
 	request.responseType = "arraybuffer";
@@ -21,7 +21,7 @@ When the request returns, onload is called, which in turn calls setup.
 			request.response,
 			(buffer) ->
 
-The AudioBufferSourceNode contains the input audio data and outputs to the analyser and output.
+The AudioBufferSourceNode contains the input audio data and outputs to the analyser and sound output(known in Web Audio API-land as destination).
 
 				source = audio.createBufferSource();
 				source.buffer = buffer;

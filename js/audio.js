@@ -6,7 +6,7 @@
     audio = new AudioContext();
   } catch (_error) {}
 
-  url = 'data/11 Where I\'m Trying To Go (Marvel Years Remix).mp3';
+  url = 'data/music.mp3';
 
   request = new XMLHttpRequest();
 
